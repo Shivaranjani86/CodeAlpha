@@ -1,0 +1,70 @@
+<!-- views/register-event.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Registration</title>
+    <link rel="stylesheet" href="../css/Register.css">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Event Registration</h2>
+        <form action="/events" method="POST">
+            
+            
+            <div class="form-group">
+                <label for="event-userId">User ID:</label><br>
+                <input type="hidden" name="userId" value="<%= user._id %>">
+            </div>
+
+            <div class="form-group">
+                <label for="event-name">Name:</label><br>
+                <input type="text" id="event-name" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description:</label><br>
+                <textarea id="description" name="description" rows="4" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="date">Date:</label><br>
+                <input type="date" id="date" name="date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="time">Time:</label><br>
+                <input type="time" id="time" name="time" required>
+            </div>
+
+            <div class="form-group">
+                <label for="location">Location:</label><br>
+                <input type="text" id="location" name="location" required>
+            </div>
+
+            <div class="form-group">
+                <label for="capacity">Capacity:</label><br>
+                <input type="number" id="capacity" name="capacity" required>
+            </div>
+
+            <div class="form-group">
+                <label for="selectEvents">Select Event Type:</label><br>
+                <select id="selectEvents" name="selectEvents" required>
+                    <option value="">Select an event type...</option>
+                    <option value="Tech Summit">Tech Summit</option>
+                    <option value="Hackathon">Hackathon</option>
+                    <option value="Developer Conference">Developer Conference</option>
+                    <option value="AI and Robotics Expo">AI and Robotics Expo</option>
+                    <option value="Music Festival">Music Festival</option>
+                    <option value="Wedding Celebration">Wedding Celebration</option>
+                    <option value="Science Expo">Science Expo</option>
+                    <option value="Networking Mixer">Networking Mixer</option>
+                </select>
+            </div>
+
+            <button type="submit">Register Event</button>
+        </form>
+    </div>
+</body>
+</html>

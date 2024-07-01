@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Events</title>
+    <link rel="stylesheet" href="../css/viewevent.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 80%;
+            max-width: 800px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        .event {
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+        }
+        .event:last-child {
+            border-bottom: none;
+        }
+        .event p {
+            margin: 5px 0;
+        }
+        .event a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .event a:hover {
+            background-color: #45a049;
+        }
+        .event form {
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .event form button {
+            padding: 8px 16px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .event form button:hover {
+            background-color: #d32f2f;
+        }
+        p.no-events {
+            text-align: center;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Registered Events for <%= user.name %></h2>
+        <% if (events.length > 0) { %>
+            <% events.forEach(event => { %>
+                <div class="event">
+                    <p><strong>Event Name:</strong> <%= event.name %></p>
+                    <p><strong>Description:</strong> <%= event.description %></p>
+                    <p><strong>Date:</strong> <%= event.date.toDateString() %></p>
+                    <p><strong>Time:</strong> <%= event.time %></p>
+                    <p><strong>Location:</strong> <%= event.location %></p>
+                    <p><strong>Capacity:</strong> <%= event.capacity %></p>
+                    <p><strong>Select Event Type:</strong> <%= event.selectEvents %></p>
+                    <a href="/events/<%= event._id %>/edit">Edit Event</a>
+                    <form action="/events/<%= event._id %>/cancel" method="POST">
+                        <button type="submit">Cancel Registration</button>
+                    </form>
+                </div>
+            <% }); %>
+        <% } else { %>
+            <p class="no-events">No events registered.</p>
+            <a href="/Register"><button>Home</button></a>
+        <% } %>
+    </div>
+</body>
+</html>
